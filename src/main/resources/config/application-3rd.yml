@@ -1,0 +1,4 @@
+third:
+  test:
+    root-uri: http://localhost:8080
+    ping-uri: /ping
