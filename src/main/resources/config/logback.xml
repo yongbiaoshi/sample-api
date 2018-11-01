@@ -47,7 +47,8 @@
 
     <!--</logger>-->
     <root level="INFO">
-        <appender-ref ref="STDOUT-JSON"/>
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="STDOUT-JSON"/>-->
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
