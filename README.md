@@ -14,6 +14,6 @@ Api工程示例代码
 ## 常用URL
 
   1. GET /actuator 查看监控，各监控对应的查看连接,mapings、env、health等
-  2. /acuator/refresh 刷新配置
+  2. POST /acuator/refresh 刷新配置
   3. /swagger-ui.hmtl swagger-ui页面
   4. /v2/api-docs  swagger生成的JSON格式的接口描述
