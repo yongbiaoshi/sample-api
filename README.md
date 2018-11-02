@@ -10,3 +10,10 @@ Api工程示例代码
   6. Sleuth 链路追踪，以及logback日志配置
   7. Validator 数据绑定及绑定验证(分组验证)
   8. 配置动态刷新
+
+## 常用URL
+
+  1. GET /actuator 查看监控，各监控对应的查看连接,mapings、env、health等
+  2. /acuator/refresh 刷新配置
+  3. /swagger-ui.hmtl swagger-ui页面
+  4. /v2/api-docs  swagger生成的JSON格式的接口描述
