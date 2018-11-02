@@ -15,16 +15,16 @@ import java.util.Objects;
 @Data
 public class UnifiedResponse {
 
-    @JsonProperty("result_code")
-    private int resultCode;
+    @JsonProperty("msg_code")
+    private int msgCode;
     private String message;
     private Object attachment;
 
     public String toJsonString() {
         return
                 String.format(
-                        "{\"return_code\":%d,\"message\":\"%s\",\"attachment\":\"%s\"}",
-                        resultCode, message, Objects.toString(attachment, "")
+                        "{\"msg_code\":%d,\"message\":\"%s\",\"attachment\":\"%s\"}",
+                        msgCode, message, Objects.toString(attachment, "")
                 );
     }
 

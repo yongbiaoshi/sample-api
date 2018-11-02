@@ -33,7 +33,7 @@ public class UnifiedRequestResponseBodyMethodProcessor extends RequestResponseBo
             super.handleReturnValue(
                     UnifiedResponse
                             .builder()
-                            .resultCode(HttpStatus.OK.value())
+                            .msgCode(HttpStatus.OK.value())
                             .message("success")
                             .attachment(returnValue)
                             .build(),

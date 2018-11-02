@@ -26,7 +26,7 @@ public class UnifiedErrorAttributes extends DefaultErrorAttributes {
     @Override
     public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
         Map<String, Object> attributes = super.getErrorAttributes(webRequest, includeStackTrace);
-        attributes.put("result_code", attributes.get("status"));
+        attributes.put("msg_code", attributes.get("status"));
         return attributes;
     }
 
