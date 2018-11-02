@@ -1,13 +1,18 @@
 package com.my.sample.api.model.form;
 
-import lombok.Data;
-import org.hibernate.validator.constraints.Mod11Check;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.*;
 
-@Data
-public class UserAddForm {
+public class UserEditForm {
+
+    // 普通用户修改验证组
+    public interface CustomUserEditGroup {
+    }
+
+    // 管理员用户修改验证组
+    public interface ManagerUserEditGroup {
+    }
 
     @Size(min = 2, max = 50, message = "用户名长度必须为 2-50 个字符")
     private String name;
@@ -15,9 +20,9 @@ public class UserAddForm {
     private String mobile;
     @Range(min = 18, max = 150)
     private Integer age;
-    @NotBlank
     private String address;
     @Email
+    @Null(groups = {CustomUserEditGroup.class}) // 普通用户修改不允许修改邮箱
     private String email;
 
 }
