@@ -1,4 +1,4 @@
-package com.my.sample.api.config;
+package com.my.sample.api.config.unified.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;

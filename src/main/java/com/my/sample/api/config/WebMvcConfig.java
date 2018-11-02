@@ -1,13 +1,12 @@
 package com.my.sample.api.config;
 
-import org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter;
+import com.my.sample.api.config.filter.DurationFilter;
+import com.my.sample.api.config.unified.response.UnifiedRequestResponseBodyMethodProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
@@ -47,8 +46,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         }
     }
 
+
     /**
-     * 添加日志记录过滤器
+     * 日志记录过滤器
      *
      * @return 日志记录过滤器
      */
@@ -61,6 +61,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
         filter.setIncludeClientInfo(true);
         filter.setMaxPayloadLength(1024);
         return filter;
+    }
+
+    /**
+     * 请求计时过滤器
+     *
+     * @return 请求计时过滤器
+     */
+    @Bean
+    public DurationFilter durationFilter() {
+        return new DurationFilter();
     }
 
     /**

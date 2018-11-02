@@ -1,6 +1,7 @@
-package com.my.sample.api.config;
+package com.my.sample.api.config.unified.response;
 
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
@@ -11,6 +12,12 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBody
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * 把ResponseBody的返回值转化成统一返回类型
+ *
+ * @author shiyongbiao
+ * @see UnifiedResponse 统一返回类型
+ */
 public class UnifiedRequestResponseBodyMethodProcessor extends RequestResponseBodyMethodProcessor {
 
     public UnifiedRequestResponseBodyMethodProcessor(List<HttpMessageConverter<?>> converters) {
@@ -19,6 +26,20 @@ public class UnifiedRequestResponseBodyMethodProcessor extends RequestResponseBo
 
     @Override
     public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
-        super.handleReturnValue(UnifiedResponse.builder().resultCode(200).message("success").attachment(returnValue).build(), returnType, mavContainer, webRequest);
+        if (returnValue instanceof UnifiedResponse) { // 如果是统一返回类型，不做处理
+            handleReturnValue(returnValue, returnType, mavContainer, webRequest);
+        } else {
+            // 如果不是统一返回类型，转成统一返回类型
+            super.handleReturnValue(
+                    UnifiedResponse
+                            .builder()
+                            .resultCode(HttpStatus.OK.value())
+                            .message("success")
+                            .attachment(returnValue)
+                            .build(),
+                    returnType,
+                    mavContainer,
+                    webRequest);
+        }
     }
 }
