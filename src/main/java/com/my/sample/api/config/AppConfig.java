@@ -1,5 +1,7 @@
 package com.my.sample.api.config;
 
+import com.my.sample.api.config.properties.RefreshableProperties;
+import com.my.sample.api.config.properties.ThirdTestServiceProperties;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -17,12 +19,12 @@ import java.time.Duration;
  */
 @EnableSwagger2Doc
 @EnableAsync
-@EnableConfigurationProperties(value = {ThirdTestServiceProperties.class})
+@EnableConfigurationProperties(value = {ThirdTestServiceProperties.class, RefreshableProperties.class})
 @Configuration
 public class AppConfig {
 
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder){
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.setConnectTimeout(Duration.ofSeconds(3)).setReadTimeout(Duration.ofSeconds(30)).build();
     }
 

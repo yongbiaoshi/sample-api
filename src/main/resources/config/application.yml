@@ -30,3 +30,6 @@ management:
         include: '*'
 logging:
   config: classpath:config/logback.xml
+
+test:
+  limit: 10

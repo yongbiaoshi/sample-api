@@ -1,4 +1,4 @@
-package com.my.sample.api.config;
+package com.my.sample.api.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

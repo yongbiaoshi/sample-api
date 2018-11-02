@@ -1,6 +1,6 @@
 package com.my.sample.api.controller;
 
-import com.my.sample.api.config.ThirdTestServiceProperties;
+import com.my.sample.api.config.properties.ThirdTestServiceProperties;
 import com.my.sample.api.service.TraceTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
