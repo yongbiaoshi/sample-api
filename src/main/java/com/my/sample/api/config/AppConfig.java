@@ -2,6 +2,7 @@ package com.my.sample.api.config;
 
 import com.my.sample.api.config.properties.RefreshableProperties;
 import com.my.sample.api.config.properties.ThirdTestServiceProperties;
+import com.my.sample.api.config.properties.ThirdWeatherProperties;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -19,7 +20,7 @@ import java.time.Duration;
  */
 @EnableSwagger2Doc
 @EnableAsync
-@EnableConfigurationProperties(value = {ThirdTestServiceProperties.class, RefreshableProperties.class})
+@EnableConfigurationProperties(value = {ThirdTestServiceProperties.class, ThirdWeatherProperties.class, RefreshableProperties.class})
 @Configuration
 public class AppConfig {
 
