@@ -1,23 +1,19 @@
 package com.my.sample.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.my.sample.api.model.form.UserAddForm;
+import com.my.sample.api.model.dto.weather.CityWeather;
+import com.my.sample.api.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.NestedServletException;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -35,6 +31,8 @@ public class SampleApiApplicationTests {
     private MockMvc mvc;
     @Autowired
     private ObjectMapper objectMapper;
+    @Autowired
+    private WeatherService weatherService;
 
     @BeforeAll
     public static void beforeAll() {
@@ -91,6 +89,12 @@ public class SampleApiApplicationTests {
                 .andExpect(status().is4xxClientError())
                 .andReturn().getResponse().getContentAsString();
         log.info("ping result: {}", result);
+    }
+
+    @Test
+    public void weatherServiceTest() {
+        CityWeather r = weatherService.get("上海");
+        assertThat(r.getCity()).isEqualTo("上海");
     }
 
     @AfterAll
