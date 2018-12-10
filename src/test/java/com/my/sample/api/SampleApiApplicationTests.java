@@ -61,7 +61,7 @@ public class SampleApiApplicationTests {
         try {
             mvc.perform(get("/ex"))
                     .andExpect(status().isInternalServerError())
-            //.andDo(print())
+                    .andDo(print())
             ;
         } catch (NestedServletException e) {
             // e.printStackTrace();
