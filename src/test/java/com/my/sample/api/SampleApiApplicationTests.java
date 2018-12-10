@@ -6,6 +6,7 @@ import com.my.sample.api.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -60,8 +61,8 @@ public class SampleApiApplicationTests {
         try {
             mvc.perform(get("/ex"))
                     .andExpect(status().isInternalServerError())
-                    //.andDo(print())
-                    ;
+            //.andDo(print())
+            ;
         } catch (NestedServletException e) {
             // e.printStackTrace();
         }
@@ -96,6 +97,15 @@ public class SampleApiApplicationTests {
     public void weatherServiceTest() {
         CityWeather r = weatherService.get("上海");
         assertThat(r.getCity()).isEqualTo("上海");
+    }
+
+    @Nested
+    class NestTest {
+
+        @Test
+        public void test() {
+            log.info("嵌套测试");
+        }
     }
 
     @AfterAll

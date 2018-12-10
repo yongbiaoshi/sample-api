@@ -27,7 +27,7 @@ public class UnifiedRequestResponseBodyMethodProcessor extends RequestResponseBo
     @Override
     public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws IOException, HttpMediaTypeNotAcceptableException, HttpMessageNotWritableException {
         if (returnValue instanceof UnifiedResponse) { // 如果是统一返回类型，不做处理
-            handleReturnValue(returnValue, returnType, mavContainer, webRequest);
+            super.handleReturnValue(returnValue, returnType, mavContainer, webRequest);
         } else {
             // 如果不是统一返回类型，转成统一返回类型
             super.handleReturnValue(

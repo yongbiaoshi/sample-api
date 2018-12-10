@@ -1,5 +1,6 @@
 package com.my.sample.api.controller;
 
+import com.my.sample.api.config.unified.response.UnifiedResponse;
 import com.my.sample.api.model.po.User;
 import com.my.sample.api.model.vo.UserDetailVo;
 import org.springframework.beans.BeanUtils;
@@ -33,6 +34,11 @@ public class TypeTestController {
         map.put("adress", "北京");
         map.put("price", 123.24d);
         return map;
+    }
+
+    @GetMapping("unified")
+    public UnifiedResponse unifiedResponse() {
+        return UnifiedResponse.builder().msgCode(200).message("success").attachment("成功").build();
     }
 
     @GetMapping("entity")
